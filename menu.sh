@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #get path of menu correct
-pushd ~/IOTstack
+pushd ~/iot-stack
 
 CURRENT_BRANCH=${1:-$(git name-rev --name-only HEAD)}
 
@@ -404,7 +404,7 @@ mainmenu_selection=$(whiptail --title "Main Menu" --menu --notags \
 	"commands" "Docker commands" \
 	"backup" "Backup options" \
 	"misc" "Miscellaneous commands" \
-	"update" "Update IOTstack" \
+	"update" "Update iot-stack" \
 	3>&1 1>&2 2>&3)
 
 case $mainmenu_selection in
@@ -537,8 +537,8 @@ case $mainmenu_selection in
 	"prune_images") ./scripts/prune-images.sh ;;
 	"aliases")
 		touch ~/.bash_aliases
-		if [ $(grep -c 'IOTstack' ~/.bash_aliases) -eq 0 ]; then
-			echo ". ~/IOTstack/.bash_aliases" >>~/.bash_aliases
+		if [ $(grep -c 'iot-stack' ~/.bash_aliases) -eq 0 ]; then
+			echo ". ~/iot-stack/.bash_aliases" >>~/.bash_aliases
 			echo "added aliases"
 		else
 			echo "aliases already added"
@@ -569,16 +569,16 @@ case $mainmenu_selection in
 		fi
 
 		#add enable file for Dropbox-Uploader
-		[ -d ~/IOTstack/backups ] || sudo mkdir -p ~/IOTstack/backups/
-		sudo touch ~/IOTstack/backups/dropbox
+		[ -d ~/iot-stack/backups ] || sudo mkdir -p ~/iot-stack/backups/
+		sudo touch ~/iot-stack/backups/dropbox
 		;;
 	"rclone")
 		sudo apt install -y rclone
 		echo "Please run 'rclone config' to configure the rclone google drive backup"
 
 		#add enable file for rclone
-		[ -d ~/IOTstack/backups ] || sudo mkdir -p ~/IOTstack/backups/
-		sudo touch ~/IOTstack/backups/rclone
+		[ -d ~/iot-stack/backups ] || sudo mkdir -p ~/iot-stack/backups/
+		sudo touch ~/iot-stack/backups/rclone
 		;;
 	esac
 	;;
